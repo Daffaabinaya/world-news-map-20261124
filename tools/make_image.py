@@ -29,42 +29,45 @@ ACCENT = (239, 68, 68)
 CAT = {
     "conflict": ((239, 68, 68), "Conflict & security"),
     "politics": ((59, 130, 246), "Politics"),
-    "economy": ((250, 204, 21), "Business & tech"),
+    "economy": ((250, 204, 21), "Business, tech & science"),
     "disaster": ((251, 146, 60), "Disaster"),
-    "travel": ((20, 184, 166), "Diplomacy & travel"),
+    "travel": ((20, 184, 166), "Health"),
 }
 
 # (number, category, lon, lat, map label, label side, place tag, headline, detail)
+# Version 2: every story was published on 24 November 2026.
 STORIES = [
-    (1, "conflict", 56.4, 26.6, "HORMUZ", "r", "STRAIT OF HORMUZ \u00b7 IRAN",
-     "Three tankers ablaze in Hormuz", "IRGC says ships hit naval mines amid US blockade"),
-    (2, "conflict", 30.5, 50.45, "KYIV", "r", "KYIV REGION \u00b7 UKRAINE",
-     "Russian strikes kill at least 15", "Death toll rises as Russia steps up its attacks"),
-    (3, "conflict", 19.5, 32.6, "OFF LIBYA", "l", "MEDITERRANEAN \u00b7 LIBYA",
-     "Ukraine says it sank Russian warship", "Zelensky: sea drones hit the Merkury off Libya"),
-    (4, "politics", 4.35, 50.85, "BRUSSELS", "l", "BRUSSELS \u00b7 EU / BELGIUM",
-     "EU drafts sports ban on Russia", "New sanctions plan; strike grounds Belgian flights"),
-    (5, "travel", 34.8, 32.1, "ISRAEL", "b", "ISRAEL",
-     "Israel clears Flydubai to return", "Minister approves resumption of Dubai flights"),
-    (6, "politics", 127.0, 37.55, "SEOUL", "r", "SEOUL \u00b7 SOUTH KOREA",
-     "Seoul overhauls security cabinet", "Ex-justice minister Kang Geum-sil named spy chief"),
-    (7, "disaster", 106.15, -6.12, "BANTEN", "r", "BANTEN \u00b7 INDONESIA",
-     "Candy factory fire kills 24", "Rescuers search for 30 people still missing"),
-    (8, "economy", -121.96, 37.37, "SILICON VALLEY", "r", "SILICON VALLEY \u00b7 USA",
-     "Jensen Huang back as Nvidia CEO", "Shares jump 30%+ 11 days after he stepped down"),
-    (9, "politics", -77.04, 38.9, "WASHINGTON", "r", "WASHINGTON \u00b7 USA",
+    (1, "conflict", 56.4, 26.6, "HORMUZ", "b", "STRAIT OF HORMUZ · IRAN",
+     "Iran shuts Hormuz further", "4 tankers hit by mines; Qatar seeks to revive talks"),
+    (2, "economy", -121.96, 37.37, "SANTA CLARA", "r", "SANTA CLARA · USA",
+     "Jensen Huang back as Nvidia CEO", "Trump says he spoke to the board; AI-bubble fears linger"),
+    (3, "conflict", 34.45, 31.5, "GAZA", "l", "GAZA",
+     "Israeli strike kills Hamas security chief", "7 killed in Gaza as doctors warn of meningitis"),
+    (4, "conflict", 35.14, 47.84, "ZAPORIZHZHIA", "r", "ZAPORIZHZHIA · UKRAINE",
+     "Russian strike kills 2, wounds dozens", "Zelensky urges four-way talks with Russia, US, Europe"),
+    (5, "politics", 44.0, 36.2, "KURDISTAN", "r", "KURDISTAN · IRAQ",
+     "Baghdad orders takeover of Kurdish oilfields", "Iraq moves on oil in Kurdish-controlled areas"),
+    (6, "politics", -77.04, 38.9, "WASHINGTON", "r", "WASHINGTON · USA",
      "Trump urges faster federal executions", "Blasts Newsom for commuting 548 death sentences"),
-    (10, "conflict", -72.34, 18.54, "HAITI", "r", "HAITI \u00b7 EL SALVADOR",
-     "Bukele details troop deaths in Haiti", "Salvadoran soldiers killed in anti-gang mission"),
-    (11, "conflict", -72.5, 7.9, "C\u00daCUTA", "r", "C\u00daCUTA \u00b7 COLOMBIA",
-     "Drone attack hits Colombian police", "Civilians, including an infant, injured"),
+    (7, "economy", 100.3, 40.96, "JIUQUAN", "r", "JIUQUAN · CHINA",
+     "China to fly its first foreign astronaut", "Pakistan's Zeeshan Ali heads for Tiangong station"),
+    (8, "politics", 90.4, 23.8, "DHAKA", "l", "DHAKA · BANGLADESH",
+     "Sheikh Hasina to end exile on Dec 16", "Ousted ex-PM plans return to Bangladesh"),
+    (9, "disaster", 106.0, 16.0, "VIETNAM", "r", "VIETNAM",
+     "Restaurant blast kills at least 6", "Deadly explosion tears through a restaurant"),
+    (10, "conflict", -99.13, 19.43, "MEXICO", "l", "MEXICO",
+     "Mexico to try 'El Chapo Isidro'", "Defies US extradition bid; US drone aided capture"),
+    (11, "politics", 149.13, -35.28, "CANBERRA", "l", "CANBERRA · AUSTRALIA",
+     "Australia warns tech giants of huge fines", "Multibillion-dollar penalties over online harm"),
+    (12, "travel", -82.37, 23.11, "HAVANA", "r", "HAVANA · CUBA",
+     "WHO chief visits crisis-hit Cuba", "Health system crumbles amid fuel shortages"),
 ]
 
 # Map window (equirectangular)
-MAP_TOP, MAP_BOTTOM = 158, 488
-LON0, LON1 = -134.0, 146.0
+MAP_TOP, MAP_BOTTOM = 152, 514
+LON0, LON1 = -131.0, 160.0
 PX_PER_DEG = W / (LON1 - LON0)
-LAT_TOP = 66.0
+LAT_TOP = 60.0
 
 
 def font(name, size):
@@ -92,7 +95,7 @@ def draw_map(img):
     for lon in range(-120, 151, 30):
         x, _ = proj(lon, 0)
         d.line([x, MAP_TOP * S, x, MAP_BOTTOM * S], fill=GRID, width=S)
-    for lat in range(-15, 66, 15):
+    for lat in range(-30, 61, 15):
         _, y = proj(0, lat)
         if MAP_TOP * S <= y <= MAP_BOTTOM * S:
             d.line([0, y, W * S, y], fill=GRID, width=S)
@@ -168,14 +171,14 @@ def draw_header(img):
     d.text((50 * S, 44 * S), "TUESDAY 24 NOVEMBER 2026", font=font("seguibl.ttf", 60),
            fill=WHITE)
     d.text((52 * S, 118 * S),
-           "11 stories that defined the day \u2014 from mines in Hormuz to Nvidia's boardroom",
+           "12 stories that defined the day \u2014 from mined tankers in Hormuz to Nvidia's boardroom",
            font=font("segoeui.ttf", 20), fill=MUTED)
 
 
 def draw_list(img):
     d = ImageDraw.Draw(img)
     cols = [(26, STORIES[:6]), (528, STORIES[6:])]
-    top, row_h, col_w = 506, 77, 470
+    top, row_h, col_w = 528, 74, 474
     f_tag = font("segoeuib.ttf", 12.5)
     f_num = font("seguibl.ttf", 19)
     for x0, items in cols:
@@ -194,28 +197,23 @@ def draw_list(img):
                    fill=WHITE)
             d.text((tx, (y0 + 46) * S), sub, font=fit(d, sub, "segoeui.ttf", 17, col_w - 56),
                    fill=MUTED)
-    # legend in the free slot of the right column
-    y0 = top + 5 * row_h + 4
-    d.text((548 * S, y0 * S), "KEY", font=f_tag, fill=MUTED)
-    f_leg = font("segoeui.ttf", 15)
-    x, y = 548, y0 + 22
-    for key in ["conflict", "politics", "economy", "disaster", "travel"]:
-        col, name = CAT[key]
-        d.ellipse([x * S, (y + 3) * S, (x + 12) * S, (y + 15) * S], fill=col)
-        d.text(((x + 18) * S, y * S), name, font=f_leg, fill=WHITE)
-        x += 26 + d.textlength(name, font=f_leg) / S
-        if x > 900:
-            x, y = 548, y + 24
 
 
 def draw_footer(img):
     d = ImageDraw.Draw(img)
-    d.line([26 * S, 978 * S, (W - 26) * S, 978 * S], fill=GRID, width=2 * S)
-    d.text((26 * S, 988 * S),
-           "The news as reported on 24 Nov 2026  \u00b7  Sources: Al Jazeera, SBS News",
-           font=font("segoeui.ttf", 15), fill=MUTED)
-    d.text(((W - 26) * S, 988 * S), "Tue 24.11.2026", font=font("segoeuib.ttf", 15),
-           fill=WHITE, anchor="ra")
+    d.line([26 * S, 974 * S, (W - 26) * S, 974 * S], fill=GRID, width=2 * S)
+    f_leg = font("segoeui.ttf", 14)
+    x, y = 26, 979
+    for key in ["conflict", "politics", "economy", "disaster", "travel"]:
+        col, name = CAT[key]
+        d.ellipse([x * S, (y + 4) * S, (x + 11) * S, (y + 15) * S], fill=col)
+        d.text(((x + 16) * S, y * S), name, font=f_leg, fill=WHITE)
+        x += 30 + d.textlength(name, font=f_leg) / S
+    d.text((26 * S, 1000 * S),
+           "Stories published on 24 Nov 2026  ·  Sources: Al Jazeera, Euronews, France 24",
+           font=font("segoeui.ttf", 14), fill=MUTED)
+    d.text(((W - 26) * S, 990 * S), "Tue 24.11.2026", font=font("segoeuib.ttf", 17),
+           fill=WHITE, anchor="rm")
 
 
 def main():

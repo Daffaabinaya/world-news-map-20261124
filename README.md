@@ -4,7 +4,7 @@
 [![rank](https://make.fun/badge/news-image-20261124/Daffaabinaya/world-news-map-20261124/rank.svg)](https://make.fun/bounty/news-image-20261124/leaderboard?utm_source=github&utm_medium=readme&utm_campaign=news-image-20261124)
 [![reward](https://make.fun/badge/news-image-20261124/Daffaabinaya/world-news-map-20261124/reward.svg)](https://make.fun/bounty/news-image-20261124?utm_source=github&utm_medium=readme&utm_campaign=news-image-20261124)
 
-The world's news of Tuesday 24 November 2026 in one 1024×1024 image: a world-map infographic with 12 numbered, colour-coded stories published that day (from mined tankers in the Strait of Hormuz to Jensen Huang's return at Nvidia), each pinned to its location and summed up in a short headline.
+The world's news of Tuesday 24 November 2026 in one 1024×1024 image: a world-map infographic with 24 numbered, colour-coded stories from 23 countries on six continents, all published that day (from mined tankers in the Strait of Hormuz and the collapse of COP31 to Jensen Huang's return at Nvidia), each pinned to its location and summed up in a headline and one line of detail, plus an "also today" strip.
 
 ![World news, 24 November 2026](entry.png)
 

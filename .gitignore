@@ -1,0 +1,6 @@
+makefun-keypair.json
+*.keypair.json
+__pycache__/
+out/
+transcripts*.tar.gz
+
